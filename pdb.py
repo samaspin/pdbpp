@@ -8,23 +8,24 @@ more details on pdb++ features.
 
 from __future__ import print_function
 
-import sys
-import os.path
-import inspect
 import code
 import codecs
 import contextlib
-import types
-import traceback
-import subprocess
-import threading
+import inspect
+import os.path
 import pprint
 import re
 import signal
+import subprocess
+import sys
+import threading
+import traceback
+import types
 from collections import OrderedDict
 
-import fancycompleter
 import six
+
+import fancycompleter
 from fancycompleter import Color, Completer, ConfigurableClass
 
 __author__ = 'Antonio Cuni <anto.cuni@gmail.com>'
@@ -93,9 +94,9 @@ def rebind_globals(func, newglobals):
 
 
 class DefaultConfig(object):
-    prompt = '(Pdb++) '
+    prompt = '(Pdb+++) '
     highlight = True
-    sticky_by_default = False
+    sticky_by_default = True
 
     # Pygments.
     use_pygments = None  # Tries to use it if available.
