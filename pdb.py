@@ -399,6 +399,8 @@ class Pdb(pdb.Pdb, ConfigurableClass, object):
                     print(f'hiding frame : {frame_path}')
                 return True
 
+        print(f'maybe showing frame : {frame_path}')
+
         if not self.config.enable_hidden_frames:
             return False
 
