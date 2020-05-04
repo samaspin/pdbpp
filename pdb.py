@@ -102,7 +102,7 @@ def rebind_globals(func, newglobals):
 class DefaultConfig(object):
     prompt = '(Pdb+++) '
     highlight = True
-    sticky_by_default = True
+    sticky_by_default = False
 
     # Pygments.
     use_pygments = None  # Tries to use it if available.
@@ -391,8 +391,9 @@ class Pdb(pdb.Pdb, ConfigurableClass, object):
         return os.path.realpath(frame.f_code.co_filename)
 
     def _is_hidden(self, frame):
+        print('is_hidden')
         frame_path = self._get_full_path_for_frame(frame)
-
+        print(frame_path)
         for pattern in ['site-packages', 'python3.6', 'python3.7', 'python3.8']:
             if pattern in frame_path:
                 return True
