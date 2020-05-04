@@ -402,22 +402,28 @@ class Pdb(pdb.Pdb, ConfigurableClass, object):
         print(f'maybe showing frame : {frame_path}')
 
         if not self.config.enable_hidden_frames:
+            print('False')
             return False
 
         # Decorated code is always considered to be hidden.
         consts = frame.f_code.co_consts
         if consts and consts[-1] is _HIDE_FRAME:
+            print('True')
             return True
 
         # Do not hide if this frame contains the initial set_trace.
         if frame is getattr(self, "_via_set_trace_frame", None):
+            print('False2')
             return False
 
         if frame.f_globals.get('__unittest'):
+            print('True2')
             return True
         if frame.f_locals.get('__tracebackhide__') \
            or frame.f_globals.get('__tracebackhide__'):
+            print('True3')
             return True
+        print('end')
 
     def get_stack(self, f, t):
         # show all the frames, except the ones that explicitly ask to be hidden
