@@ -47,6 +47,7 @@ def printit(item):
     print(type(item))
     print(dir(item))
 
+DEBUG=True
 
 # If it contains only _, digits, letters, [] or dots, it's probably side
 # effects free.
