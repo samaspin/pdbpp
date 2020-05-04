@@ -41,6 +41,12 @@ except ImportError:
         def signature(obj):
             return ' [pip install funcsigs to show the signature]'
 
+# use this for debugging
+def printit(item):
+    print(item)
+    print(type(item))
+    print(dir(item))
+
 
 # If it contains only _, digits, letters, [] or dots, it's probably side
 # effects free.
@@ -380,7 +386,17 @@ class Pdb(pdb.Pdb, ConfigurableClass, object):
                 tb = tb.tb_next
         return ret
 
+    def _get_full_path_for_frame(self, frame):
+        # return os.path.realpath(inspect.getsourcefile(item))
+        return os.path.realpath(frame.f_code.co_filename)
+
     def _is_hidden(self, frame):
+        frame_path = self._get_full_path_for_frame(frame)
+
+        for pattern in ['site-pacakges']:
+            if pattern in frame_path:
+                return True
+
         if not self.config.enable_hidden_frames:
             return False
 
@@ -1778,5 +1794,6 @@ def break_on_setattr(attrname, condition=always, Pdb=Pdb):
 
 
 if __name__ == '__main__':
+    print('here')
     import pdb
     pdb.main()
