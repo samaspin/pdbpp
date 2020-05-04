@@ -393,7 +393,7 @@ class Pdb(pdb.Pdb, ConfigurableClass, object):
     def _is_hidden(self, frame):
         frame_path = self._get_full_path_for_frame(frame)
 
-        for pattern in ['site-pacakges']:
+        for pattern in ['site-packages', 'python3.6', 'python3.7', 'python3.8']:
             if pattern in frame_path:
                 return True
 
@@ -1794,6 +1794,5 @@ def break_on_setattr(attrname, condition=always, Pdb=Pdb):
 
 
 if __name__ == '__main__':
-    print('here')
     import pdb
     pdb.main()
