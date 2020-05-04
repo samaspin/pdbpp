@@ -425,6 +425,8 @@ class Pdb(pdb.Pdb, ConfigurableClass, object):
             return True
         print('end')
 
+        return False # added by me
+
     def get_stack(self, f, t):
         # show all the frames, except the ones that explicitly ask to be hidden
         fullstack, idx = super(Pdb, self).get_stack(f, t)
